@@ -1,0 +1,227 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: #eaecef;
+    color: #333;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://source.unsplash.com/random/1920x1080/?pattern') no-repeat center center/cover;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    height: 80vh;
+    max-width: 1000px;
+    max-height: 800px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+/* ここより下は書き換え禁止 */
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 2px;
+    margin-right: 20px;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.cell {
+    background-color: #006400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: inset 0 0 3px #000;
+}
+
+.stone {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
+}
+
+.black {
+    background-color: black;
+}
+
+.white {
+    background-color: white;
+}
+
+.empty {
+    background-color: #006400;
+}
+
+.can{
+    background-color: gray;
+}
+
+/* ひっくり返すアニメーション */
+@keyframes flip {
+    0% {
+        transform: rotateY(0);
+    }
+    100% {
+        transform: rotateY(180deg);
+    }
+}
+
+/* アニメーションを適用するためのクラス */
+.flipping {
+    animation: flip 1s ease 0s infinite normal;
+}
+/* ここより上は書き換え禁止 */
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    max-width: 300px;
+    width: 100%;
+    min-width: 200px;
+}
+
+.info-box {
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+#slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    outline: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    margin: 10px 0;
+}
+
+#slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #4caf50;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#slider::-webkit-slider-thumb:hover {
+    background: #45a049;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 2em;
+    width: 60%;
+    max-width: 500px;
+    height: 40%;
+    max-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.basic_side {
+    height: 100%;
+    width: 250px;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.basic_side a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #a3a3a3;
+    display: block;
+    white-space: nowrap;
+}
+
+.basic_side a:hover {
+    color: #f1f1f1;
+}
